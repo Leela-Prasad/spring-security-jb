@@ -8,7 +8,17 @@ public class HelloController {
 
     @GetMapping("/")
     public String greet() {
-        return "Hello!";
+        return "<h1>Hello!</h1>";
+    }
+
+    @GetMapping("/user")
+    public String user() {
+        return "<h1>Hello User!</h1>";
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "<h1>Hello Admin!</h1>";
     }
 
 }
