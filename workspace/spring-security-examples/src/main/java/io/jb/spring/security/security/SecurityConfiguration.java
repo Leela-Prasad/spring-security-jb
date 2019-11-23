@@ -22,17 +22,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
             .dataSource(dataSource)
-            /*.withDefaultSchema()
-            .withUser(
-                    User.withUsername("user")
-                        .password("pass")
-                        .roles("USER")
-            )
-            .withUser(
-                    User.withUsername("admin")
-                        .password("pass")
-                        .roles("ADMIN")
-            )*/
+            // Below Config is when we have custom schemas different from Spring Default Schema
+            .usersByUsernameQuery("select username, password, enabled from users where username = ?")
+            .authoritiesByUsernameQuery("select username, authority from authorities where username = ?")
         ;
 
     }
