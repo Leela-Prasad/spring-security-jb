@@ -9,29 +9,29 @@ import java.util.Collection;
 
 public class MyUserDetails implements UserDetails {
 
-    private String userName;
+   private MyUser myUser;
 
     public MyUserDetails() {
 
     }
 
-    public MyUserDetails(String userName) {
-        this.userName = userName;
+    public MyUserDetails(MyUser user) {
+        this.myUser = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return Arrays.asList(new SimpleGrantedAuthority(myUser.getRoles()));
     }
 
     @Override
     public String getPassword() {
-        return "pass";
+        return myUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return userName;
+        return myUser.getUserName();
     }
 
     @Override
@@ -51,6 +51,6 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return myUser.getActive();
     }
 }
