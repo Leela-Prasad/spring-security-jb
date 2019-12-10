@@ -301,3 +301,19 @@ transcations with JWT should happen in HTTPS.
 How do you disable a JWT?
 incase of Http Session we can do a logout and the session on the server will be destroyed or invalidated.
 But in case of JWT everything is there with the client, so in this case we can setup expiry for the JWT and  a work around is we can maintain a black listed JWT on the server so the every request will check whether the incoming JWT is there in black listed JWT or not and process the request.
+
+JWT Authentication.
+Steps:
+Create a new Authentication API endpoint
+Examine every incoming request for valid JWT and authorise
+
+Step1:
+Expose /authenticate endpoint which will accept username and password, if it is valid then it will return JWT Token.
+
+Step2:
+Intercept all incoming requests.
+For this we will write a spring filter where we will extract JWT token from the header, validate the token, if it valid then we will set this token in security context holder.
+
+Setting this Authentication Object in the Security Context Holder is mandatory so that Authentication will be skipped in the next Authentication Filter.
+
+*** We need to add our custom filter before Authentication Filter so that our custom filter will load/set Authentication object in security context holder so that authentication will be skipped in Authentication Filter. 
