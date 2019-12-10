@@ -317,3 +317,28 @@ For this we will write a spring filter where we will extract JWT token from the 
 Setting this Authentication Object in the Security Context Holder is mandatory so that Authentication will be skipped in the next Authentication Filter.
 
 *** We need to add our custom filter before Authentication Filter so that our custom filter will load/set Authentication object in security context holder so that authentication will be skipped in Authentication Filter. 
+
+
+Hashing:
+Generally Passwords will not be stored in plain text in the systems.
+
+Password Encryption and Decryption is also Not Recommended solution as of today, because server needs to store the secret key that will be used for encryption and decryption which can possibly hacked by hacker.
+
+So the solution is Hashing.
+Hashing is a process making a plain text into a scrambled or un recognised text.
+
+Properties of Hashing:
+1. Repeatable
+2. One way function
+
+If you give the same text it should always produce same scrambled text.
+One way function means there is no way to reverse the scrambled text into plain text.
+
+Generally when a user enters details, passwords will be hashed and stored in the system.
+
+When user is trying to login into the system then system will compute the hash for the entered password and compares this hash value with the existing hash value in the DB.
+
+Popular Hashing Functions
+1. MD5
+2. SHA
+3. BCrypt
